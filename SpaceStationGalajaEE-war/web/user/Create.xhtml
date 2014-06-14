@@ -20,6 +20,46 @@
                         <p:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
                         <p:outputLabel value="#{bundle.CreateUserLabel_type}" for="type" />
                         <p:inputText id="type" value="#{userController.selected.type}" title="#{bundle.CreateUserTitle_type}" />
+                        <f:view>
+
+
+                            <h:form>
+                                <h1><h:outputText value="List"/></h1>
+                                <h:dataTable value="#{pl.net.palac.galaja.jsf.DockController}" var="item">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Id"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.id}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Name"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.name}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Type"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.type}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Efficiency"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.efficiency}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="OnStation"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.onStation}"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </f:view>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{userController.create}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="UserCreateDialog.hide()"/>
