@@ -3,8 +3,12 @@
   <persistence-unit name="SpaceStationGalajaEE-ejbPU" transaction-type="JTA">
     <jta-data-source>mydb</jta-data-source>
 <!--    <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
-    <class>pl.net.palac.galaja.entity.Dock</class>
     <class>pl.net.palac.galaja.entity.User</class>
+    <class>pl.net.palac.galaja.entity.Dock</class>
+    <class>pl.net.palac.galaja.entity.Planet</class>
+    <class>pl.net.palac.galaja.entity.Ship</class>
+    <class>pl.net.palac.galaja.entity.Station</class>
+    <class>pl.net.palac.galaja.entity.Transport</class>
     <properties/>
   </persistence-unit>
 </persistence>
