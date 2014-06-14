@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlanetEditDlg" widgetVar="PlanetEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPlanetTitle}">
+            <h:form id="PlanetEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{planetController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPlanetLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{planetController.selected.id}" title="#{bundle.EditPlanetTitle_id}" required="true" requiredMessage="#{bundle.EditPlanetRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPlanetLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{planetController.selected.name}" title="#{bundle.EditPlanetTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditPlanetLabel_stationCount}" for="stationCount" />
+                        <p:inputText id="stationCount" value="#{planetController.selected.stationCount}" title="#{bundle.EditPlanetTitle_stationCount}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{planetController.update}" value="#{bundle.Save}" update="display,:PlanetListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PlanetEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlanetEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

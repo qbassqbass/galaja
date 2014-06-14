@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StationViewDlg" widgetVar="StationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewStationTitle}">
+            <h:form id="StationViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stationController.selected != null}">
+                        <h:outputText value="#{bundle.ViewStationLabel_id}"/>
+                        <h:outputText value="#{stationController.selected.id}" title="#{bundle.ViewStationTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewStationLabel_name}"/>
+                        <h:outputText value="#{stationController.selected.name}" title="#{bundle.ViewStationTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewStationLabel_cargoSize}"/>
+                        <h:outputText value="#{stationController.selected.cargoSize}" title="#{bundle.ViewStationTitle_cargoSize}"/>
+                        <h:outputText value="#{bundle.ViewStationLabel_onPlanet}"/>
+                        <h:outputText value="#{stationController.selected.onPlanet}" title="#{bundle.ViewStationTitle_onPlanet}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="StationViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

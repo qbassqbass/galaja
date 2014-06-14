@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DockEditDlg" widgetVar="DockEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDockTitle}">
+            <h:form id="DockEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dockController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDockLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{dockController.selected.id}" title="#{bundle.EditDockTitle_id}" required="true" requiredMessage="#{bundle.EditDockRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditDockLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{dockController.selected.name}" title="#{bundle.EditDockTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditDockLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{dockController.selected.type}" title="#{bundle.EditDockTitle_type}" />
+                        <p:outputLabel value="#{bundle.EditDockLabel_efficiency}" for="efficiency" />
+                        <p:inputText id="efficiency" value="#{dockController.selected.efficiency}" title="#{bundle.EditDockTitle_efficiency}" />
+                        <p:outputLabel value="#{bundle.EditDockLabel_onStation}" for="onStation" />
+                        <p:selectOneMenu id="onStation" value="#{dockController.selected.onStation}" required="true" requiredMessage="#{bundle.EditDockRequiredMessage_onStation}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{stationController.itemsAvailableSelectOne}"
+                                           var="onStationItem"
+                                           itemValue="#{onStationItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dockController.update}" value="#{bundle.Save}" update="display,:DockListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DockEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DockEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

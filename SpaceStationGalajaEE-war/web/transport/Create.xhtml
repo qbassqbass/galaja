@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TransportCreateDlg" widgetVar="TransportCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTransportTitle}">
+            <h:form id="TransportCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{transportController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{transportController.selected.id}" title="#{bundle.CreateTransportTitle_id}" required="true" requiredMessage="#{bundle.CreateTransportRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_startDate}" for="startDate" />
+                        <p:calendar id="startDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{transportController.selected.startDate}" title="#{bundle.EditTransportTitle_startDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_endDate}" for="endDate" />
+                        <p:calendar id="endDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{transportController.selected.endDate}" title="#{bundle.EditTransportTitle_endDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_toPlanet}" for="toPlanet" />
+                        <p:selectOneMenu id="toPlanet" value="#{transportController.selected.toPlanet}" >
+                            <f:selectItems value="#{planetController.itemsAvailableSelectOne}"
+                                           var="toPlanetItem"
+                                           itemValue="#{toPlanetItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_fromStation}" for="fromStation" />
+                        <p:selectOneMenu id="fromStation" value="#{transportController.selected.fromStation}" >
+                            <f:selectItems value="#{stationController.itemsAvailableSelectOne}"
+                                           var="fromStationItem"
+                                           itemValue="#{fromStationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_fromPlanet}" for="fromPlanet" />
+                        <p:selectOneMenu id="fromPlanet" value="#{transportController.selected.fromPlanet}" >
+                            <f:selectItems value="#{planetController.itemsAvailableSelectOne}"
+                                           var="fromPlanetItem"
+                                           itemValue="#{fromPlanetItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTransportLabel_toStation}" for="toStation" />
+                        <p:selectOneMenu id="toStation" value="#{transportController.selected.toStation}" >
+                            <f:selectItems value="#{stationController.itemsAvailableSelectOne}"
+                                           var="toStationItem"
+                                           itemValue="#{toStationItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{transportController.create}" value="#{bundle.Save}" update="display,:TransportListForm:datalist,:growl" oncomplete="handleSubmit(args,'TransportCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TransportCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
