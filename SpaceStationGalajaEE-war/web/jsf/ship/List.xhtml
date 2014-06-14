@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListShipTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListShipEmpty}" rendered="#{shipController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{shipController.items.rowCount > 0}">
+                    <h:outputText value="#{shipController.pagination.pageFirstItem + 1}..#{shipController.pagination.pageLastItem + 1}/#{shipController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{shipController.previous}" value="#{bundle.Previous} #{shipController.pagination.pageSize}" rendered="#{shipController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{shipController.next}" value="#{bundle.Next} #{shipController.pagination.pageSize}" rendered="#{shipController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{shipController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListShipTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListShipTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListShipTitle_serialNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serialNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListShipTitle_capacity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.capacity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListShipTitle_type}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.type}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{shipController.prepareView}" value="#{bundle.ListShipViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{shipController.prepareEdit}" value="#{bundle.ListShipEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{shipController.destroy}" value="#{bundle.ListShipDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{shipController.prepareCreate}" value="#{bundle.ListShipCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListShipIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

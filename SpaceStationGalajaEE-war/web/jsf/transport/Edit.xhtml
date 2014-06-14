@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTransportTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTransportLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{transportController.selected.id}" title="#{bundle.EditTransportTitle_id}" required="true" requiredMessage="#{bundle.EditTransportRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditTransportLabel_startDate}" for="startDate" />
+                    <h:inputText id="startDate" value="#{transportController.selected.startDate}" title="#{bundle.EditTransportTitle_startDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransportLabel_endDate}" for="endDate" />
+                    <h:inputText id="endDate" value="#{transportController.selected.endDate}" title="#{bundle.EditTransportTitle_endDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransportLabel_toPlanet}" for="toPlanet" />
+                    <h:selectOneMenu id="toPlanet" value="#{transportController.selected.toPlanet}" title="#{bundle.EditTransportTitle_toPlanet}" >
+                        <f:selectItems value="#{planetController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransportLabel_fromStation}" for="fromStation" />
+                    <h:selectOneMenu id="fromStation" value="#{transportController.selected.fromStation}" title="#{bundle.EditTransportTitle_fromStation}" >
+                        <f:selectItems value="#{stationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransportLabel_fromPlanet}" for="fromPlanet" />
+                    <h:selectOneMenu id="fromPlanet" value="#{transportController.selected.fromPlanet}" title="#{bundle.EditTransportTitle_fromPlanet}" >
+                        <f:selectItems value="#{planetController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransportLabel_toStation}" for="toStation" />
+                    <h:selectOneMenu id="toStation" value="#{transportController.selected.toStation}" title="#{bundle.EditTransportTitle_toStation}" >
+                        <f:selectItems value="#{stationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{transportController.update}" value="#{bundle.EditTransportSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTransportViewLink}"/>
+                <br />
+                <h:commandLink action="#{transportController.prepareList}" value="#{bundle.EditTransportShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTransportIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

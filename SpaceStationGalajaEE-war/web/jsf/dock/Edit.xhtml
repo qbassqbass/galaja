@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDockTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDockLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{dockController.selected.id}" title="#{bundle.EditDockTitle_id}" required="true" requiredMessage="#{bundle.EditDockRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditDockLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{dockController.selected.name}" title="#{bundle.EditDockTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditDockLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{dockController.selected.type}" title="#{bundle.EditDockTitle_type}" />
+                    <h:outputLabel value="#{bundle.EditDockLabel_efficiency}" for="efficiency" />
+                    <h:inputText id="efficiency" value="#{dockController.selected.efficiency}" title="#{bundle.EditDockTitle_efficiency}" />
+                    <h:outputLabel value="#{bundle.EditDockLabel_onStation}" for="onStation" />
+                    <h:selectOneMenu id="onStation" value="#{dockController.selected.onStation}" title="#{bundle.EditDockTitle_onStation}" required="true" requiredMessage="#{bundle.EditDockRequiredMessage_onStation}">
+                        <f:selectItems value="#{stationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{dockController.update}" value="#{bundle.EditDockSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDockViewLink}"/>
+                <br />
+                <h:commandLink action="#{dockController.prepareList}" value="#{bundle.EditDockShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDockIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

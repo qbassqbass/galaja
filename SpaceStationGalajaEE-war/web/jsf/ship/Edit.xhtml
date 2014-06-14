@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditShipTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditShipLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{shipController.selected.id}" title="#{bundle.EditShipTitle_id}" required="true" requiredMessage="#{bundle.EditShipRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditShipLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{shipController.selected.name}" title="#{bundle.EditShipTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditShipLabel_serialNumber}" for="serialNumber" />
+                    <h:inputText id="serialNumber" value="#{shipController.selected.serialNumber}" title="#{bundle.EditShipTitle_serialNumber}" />
+                    <h:outputLabel value="#{bundle.EditShipLabel_capacity}" for="capacity" />
+                    <h:inputText id="capacity" value="#{shipController.selected.capacity}" title="#{bundle.EditShipTitle_capacity}" />
+                    <h:outputLabel value="#{bundle.EditShipLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{shipController.selected.type}" title="#{bundle.EditShipTitle_type}" />
+                </h:panelGrid>
+                <h:commandLink action="#{shipController.update}" value="#{bundle.EditShipSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditShipViewLink}"/>
+                <br />
+                <h:commandLink action="#{shipController.prepareList}" value="#{bundle.EditShipShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditShipIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

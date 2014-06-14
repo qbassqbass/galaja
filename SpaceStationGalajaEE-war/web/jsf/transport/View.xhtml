@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTransportTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTransportLabel_id}"/>
+                    <h:outputText value="#{transportController.selected.id}" title="#{bundle.ViewTransportTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTransportLabel_startDate}"/>
+                    <h:outputText value="#{transportController.selected.startDate}" title="#{bundle.ViewTransportTitle_startDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransportLabel_endDate}"/>
+                    <h:outputText value="#{transportController.selected.endDate}" title="#{bundle.ViewTransportTitle_endDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransportLabel_toPlanet}"/>
+                    <h:outputText value="#{transportController.selected.toPlanet}" title="#{bundle.ViewTransportTitle_toPlanet}"/>
+                    <h:outputText value="#{bundle.ViewTransportLabel_fromStation}"/>
+                    <h:outputText value="#{transportController.selected.fromStation}" title="#{bundle.ViewTransportTitle_fromStation}"/>
+                    <h:outputText value="#{bundle.ViewTransportLabel_fromPlanet}"/>
+                    <h:outputText value="#{transportController.selected.fromPlanet}" title="#{bundle.ViewTransportTitle_fromPlanet}"/>
+                    <h:outputText value="#{bundle.ViewTransportLabel_toStation}"/>
+                    <h:outputText value="#{transportController.selected.toStation}" title="#{bundle.ViewTransportTitle_toStation}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{transportController.destroyAndView}" value="#{bundle.ViewTransportDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTransportEditLink}"/>
+                <br />
+                <h:commandLink action="#{transportController.prepareCreate}" value="#{bundle.ViewTransportCreateLink}" />
+                <br />
+                <h:commandLink action="#{transportController.prepareList}" value="#{bundle.ViewTransportShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTransportIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
