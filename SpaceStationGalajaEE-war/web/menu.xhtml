@@ -16,16 +16,26 @@
         <h:body>
 
             <h:form>
-                    <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Stwórz użytkownika" url="/faces/test/Create.xhtml" />
-                            <p:menuitem value="Wypisz użytkowników" url="/faces/test/users.xhtml" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
+                    <p:panelMenu>
+                        <p:submenu label="Panel administracyjny">
+                            <p:submenu label="Użytkownicy">
+                                <p:menuitem value="Dodaj" url="faces/user/create.xhtml"/>
+                                <p:menuitem value="Usuń" url="/faces/user/delete.xhtml"/>
+                                <p:menuitem value="Wyświetl" url="/faces/user/view.xhtml"/>
+                            </p:submenu>
+                            <p:submenu label="Statki">
+                                <p:menuitem value="Dodaj" url="/faces/user/create.xhtml"/>
+                                <p:menuitem value="Usuń" url="/faces/user/delete.xhtml"/>
+                                <p:menuitem value="Wyświetl" url="/faces/user/view.xhtml"/>
+                            </p:submenu>
+                            <p:submenu label="Doki">
+                                <p:menuitem value="Dodaj" url="/faces/user/create.xhtml"/>
+                                <p:menuitem value="Usuń" url="/faces/user/delete.xhtml"/>
+                                <p:menuitem value="Wyświetl" url="/faces/user/view.xhtml"/>
+                            </p:submenu>
                         </p:submenu>
 
-                    </p:menu>
+                    </p:panelMenu>
                 </h:form>
         </h:body>
 
