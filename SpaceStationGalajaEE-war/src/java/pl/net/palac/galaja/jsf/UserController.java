@@ -46,7 +46,7 @@ public class UserController implements Serializable {
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
-            pagination = new PaginationHelper(10) {
+            pagination = new PaginationHelper(100) {
 
                 @Override
                 public int getItemsCount() {
@@ -171,13 +171,13 @@ public class UserController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "view";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "view";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {

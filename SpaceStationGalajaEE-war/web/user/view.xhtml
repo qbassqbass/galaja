@@ -12,6 +12,8 @@
 
 
             <h:form>
+                <p:commandButton action="#{userController.next}" value="next" />
+                <p:commandButton action="#{userController.previous}" value="prev" />
                 <h1><h:outputText value="List"/></h1>
                 <p:dataTable value="#{userController.items}" var="item">
                     <p:column>
