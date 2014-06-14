@@ -8,7 +8,7 @@ import pl.net.palac.galaja.ejb.UserFacade;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -19,7 +19,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 @Named("userController")
-@RequestScoped
+@SessionScoped
 public class UserController implements Serializable {
 
     private User current;
@@ -171,6 +171,7 @@ public class UserController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
+        System.out.println("NextPage");
         return "view";
     }
 

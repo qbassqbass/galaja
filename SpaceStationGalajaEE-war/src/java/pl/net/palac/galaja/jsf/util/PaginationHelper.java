@@ -32,6 +32,7 @@ public abstract class PaginationHelper {
     }
 
     public boolean isHasNextPage() {
+        System.out.println("PAGE: "+page);
         return (page + 1) * pageSize + 1 <= getItemsCount();
     }
 
